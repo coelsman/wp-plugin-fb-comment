@@ -101,26 +101,28 @@ function fb_comment_after_view() {
 	require_once ( WP_FB_CM_DIR . '/after_view.php' );
 }
 
-function fb_comment_append_after_post() {
-	$config_values  = fb_comment_get_config();
-	$append_element = '<div class="fb-comments" data-href="' . get_permalink() . '"';
+function fb_comment_append_after_post($content) {
+	if ( is_single() && !is_home() && !is_feed() ) {
+		$config_values  = fb_comment_get_config();
+		$content .= '<div class="fb-comments" data-href="' . get_permalink() . '"';
 
-	if ( $config_values->num_posts ) {
-		$append_element .= ' data-numposts="' . $config_values->num_posts . '"';
-	}
-	if ( $config_values->order_by ) {
-		$append_element .= ' data-order-by="' . $config_values->order_by . '"';
-	}
-	if ( $config_values->width ) {
-		$append_element .= ' data-width="' . $config_values->width . '"';
-	} else {
-		$append_element .= ' data-width="100%"';
-	}
-	if ( $config_values->colorscheme ) {
-		$append_element .= ' data-colorscheme="' . $config_values->colorscheme . '"';
-	}
+		if ( $config_values->num_posts ) {
+			$content .= ' data-numposts="' . $config_values->num_posts . '"';
+		}
+		if ( $config_values->order_by ) {
+			$content .= ' data-order-by="' . $config_values->order_by . '"';
+		}
+		if ( $config_values->width ) {
+			$content .= ' data-width="' . $config_values->width . '"';
+		} else {
+			$content .= ' data-width="100%"';
+		}
+		if ( $config_values->colorscheme ) {
+			$content .= ' data-colorscheme="' . $config_values->colorscheme . '"';
+		}
 
-	echo $append_element . '></div>';
+		return $content . '></div>';
+	}
 }
 
 add_action( 'plugins_loaded', 'mfpd_load' );  // Call function when this plugin is loaded.
