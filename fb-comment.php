@@ -122,6 +122,8 @@ function fb_comment_append_after_post($content) {
 		}
 
 		return $content . '></div>';
+	} else {
+		return $content;
 	}
 }
 
