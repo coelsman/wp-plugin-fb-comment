@@ -31,6 +31,7 @@ if ( !class_exists('Fb_Comment') ) {
 			return '<p>Hello ' . $name . '!!!</p>';
 		}
 
+		/* ++ */
 		public function enqueue_scripts_and_styles() {
 			wp_register_style( 'fb-comment', plugins_url( '/css/fb-comment.css', __FILE__ ) );
 			wp_enqueue_style( 'fb-comment' );
@@ -46,6 +47,7 @@ function mfpd_load() {
 	$mfpd = new Fb_Comment();
 }
 
+/* ++ */
 /**
 * Add menu to Admin dashboard
 */
@@ -53,6 +55,7 @@ function fb_comment_add_menu() {
 	add_menu_page('FB Comment Configurations', 'FB Comment', 'manage_options', 'manage_fb_comment', 'fb_comment_layout');
 }
 
+/* ++ */
 function fb_comment_get_config() {
 	$config_values = get_option( 'fb_comment_configs' );
 	return json_decode( $config_values );
@@ -87,16 +90,19 @@ function fb_comment_layout() {
 	fb_comment_view( $view );
 }
 
+/* ++ */
 function fb_comment_view( $view ) {
 	fb_comment_before_view();
 	require_once ( WP_FB_CM_DIR . '/views/' . $view . '.php' );
 	fb_comment_after_view();
 }
 
+/* ++ */
 function fb_comment_before_view() {
 	require_once ( WP_FB_CM_DIR . '/before_view.php' );
 }
 
+/* ++ */
 function fb_comment_after_view() {
 	require_once ( WP_FB_CM_DIR . '/after_view.php' );
 }
