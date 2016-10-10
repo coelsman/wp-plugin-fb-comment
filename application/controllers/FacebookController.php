@@ -7,6 +7,10 @@ if ( !class_exists('FacebookController') ) {
 			parent::__construct();
 		}
 
+		public function config() {
+			echo 2;
+		}
+
 		public function front_comment($content) {
 			if ( is_single() && !is_home() && !is_feed() ) {
 				$config_values  = $this->model->get_config();

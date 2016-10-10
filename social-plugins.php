@@ -43,11 +43,22 @@ function social_plug_frontend() {
 		case 'social_plug_config':
 			$cfController->index();
 			break;
+
+		case 'fb_plug_config':
+			$fbController->config();
+			break;
+
+		case 'gg_plug_config':
+			// $fbController->config();
+			break;
 	}
 }
 
 function social_plugin_add_menu() {
-	add_menu_page('Social Plugins Configuration', 'Social Plugins', 'manage_options', 'social_plug_config', 'social_plug_frontend');
+	add_menu_page( 'Social Plugins Configuration', 'Social Plugins', 'manage_options', 'social_plug_config', 'social_plug_frontend' );
+
+	add_submenu_page( 'social_plug_config', 'Facebook Plugins Configuration', 'Facebook Plugins', 'manage_options', 'fb_plug_config', 'social_plug_frontend' );
+	add_submenu_page( 'social_plug_config', 'Google Plugins Configuration', 'Google Plugins', 'manage_options', 'gg_plug_config', 'social_plug_frontend' );
 }
 
 function social_plugin_activate() {
