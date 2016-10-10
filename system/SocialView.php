@@ -21,11 +21,11 @@ if ( !class_exists('SocialView') ) {
 		}
 
 		public function enqueue_scripts_and_styles() {
-			wp_register_style( 'fb-comment', $this->_vendor_url . '/css/fb-comment.css' );
-			wp_enqueue_style( 'fb-comment' );
+			wp_register_style( 'social-plugins', $this->_vendor_url . '/css/social-plugins.css' );
+			wp_enqueue_style( 'social-plugins' );
 			wp_enqueue_script( 'jquery' );
-			wp_register_script( 'fb-comment', $this->_vendor_url . '/js/fb-comment.js', array(), false, true );
-			wp_enqueue_script( 'fb-comment' );
+			wp_register_script( 'social-plugins', $this->_vendor_url . '/js/social-plugins.js', array(), false, true );
+			wp_enqueue_script( 'social-plugins' );
 		}
 
 		public function append_after_post($content) {
