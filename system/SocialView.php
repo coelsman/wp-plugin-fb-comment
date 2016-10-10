@@ -16,12 +16,8 @@ if ( !class_exists('SocialView') ) {
 
 		public function render($view, $data = array()) {
 			$this->_before_view();
-			$this->_main_view($view);
+			$this->_main_view($view, $data);
 			$this->_after_view();
-		}
-
-		public function add_menu() {
-			add_menu_page('FB Comment Configurations', 'FB Comment', 'manage_options', 'manage_fb_comment', 'fb_comment_layout');
 		}
 
 		public function enqueue_scripts_and_styles() {
@@ -44,7 +40,8 @@ if ( !class_exists('SocialView') ) {
 			require_once ( $this->_app_view_dir . '/layouts/after_view.php' );
 		}
 
-		protected function _main_view($view) {
+		protected function _main_view($view, &$data) {
+			extract( $data );
 			require_once ( $this->_app_view_dir . '/' . $view . '.php' );
 		}
 	}

@@ -1,5 +1,4 @@
 <?php
-	$config_values = $_SESSION['fb_comment_variables'];
 	$colorscheme_array = array(
 		'dark' => 'Dark',
 		'light' => 'Light'
@@ -38,7 +37,7 @@
 			<input type="number" name="width" value="<?php echo @$config_values->width; ?>">
 		</div>
 		<div class="form-control">
-			<input type="submit" name="fb_comment_update" id="update" class="button button-primary button-large" value="Update">
+			<input type="submit" name="social_plug_update" id="update" class="button button-primary button-large" value="Update">
 		</div>
 	</form>
 </div>
