@@ -9,8 +9,8 @@ if ( !class_exists('SocialView') ) {
 
 		public function __construct() {
 			$this->model = new SocialModel();
-			$this->_app_view_dir = WP_FB_CM_DIR . '/application/views/';
-			$this->_vendor_url = WP_FB_CM_URL . '/publics';
+			$this->_app_view_dir = WP_SOCIAL_PLUGINS_DIR . '/application/views/';
+			$this->_vendor_url = WP_SOCIAL_PLUGINS_URL . '/publics';
 			$this->enqueue_scripts_and_styles();
 		}
 

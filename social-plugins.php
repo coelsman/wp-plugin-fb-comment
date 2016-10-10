@@ -11,8 +11,8 @@
  * License: GPLv2
  */
 
-define('WP_FB_CM_DIR', WP_PLUGIN_DIR . "/" . plugin_basename(dirname(__FILE__)));
-define('WP_FB_CM_URL', plugins_url(plugin_basename(dirname(__FILE__))));
+define('WP_SOCIAL_PLUGINS_DIR', WP_PLUGIN_DIR . "/" . plugin_basename(dirname(__FILE__)));
+define('WP_SOCIAL_PLUGINS_URL', plugins_url(plugin_basename(dirname(__FILE__))));
 
 require_once 'system/SocialController.php';
 require_once 'application/controllers/ConfigController.php';

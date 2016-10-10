@@ -1,1 +1,2 @@
-# wp-plugin-fb-comment
+# wp-social-plugin
+`Developed by coelsman`
