@@ -20,7 +20,7 @@ require_once 'application/controllers/FacebookController.php';
 
 $socialApplication = null;
 $fbController = new FacebookController();
-$cfController = new ConfigController();
+$confController = new ConfigController();
 
 function social_plugin_loaded() {
 	global $socialApplication;
@@ -34,31 +34,28 @@ function social_append_after_post( $content ) {
 }
 
 function social_plug_frontend() {
-	global $cfController;
+	global $confController;
 	global $fbController;
 
-	$page = isset( $_GET['page'] ) ? $_GET['page'] : 'social_plug_config';
+	$page = isset( $_GET['page'] ) ? $_GET['page'] : 'splug_conf';
+	$page = explode( '_', $page );
 
-	switch ($page) {
-		case 'social_plug_config':
-			$cfController->index();
-			break;
+	if ( $page[0] == 'splug' ) {
+		$action = @$page[2] ? $page[2] : 'index';
 
-		case 'fb_plug_config':
-			$fbController->config();
-			break;
-
-		case 'gg_plug_config':
-			// $fbController->config();
-			break;
+		if ( @$page[1] == 'conf' ) {
+			$confController->$action();
+		} elseif ( @$page[1] == 'fb' ) {
+			$fbController->$action();
+		}
 	}
 }
 
 function social_plugin_add_menu() {
-	add_menu_page( 'Social Plugins Configuration', 'Social Plugins', 'manage_options', 'social_plug_config', 'social_plug_frontend' );
+	add_menu_page( 'Social Plugins Configuration', 'Social Plugins', 'manage_options', 'splug_conf', 'social_plug_frontend' );
 
-	add_submenu_page( 'social_plug_config', 'Facebook Plugins Configuration', 'Facebook Plugins', 'manage_options', 'fb_plug_config', 'social_plug_frontend' );
-	add_submenu_page( 'social_plug_config', 'Google Plugins Configuration', 'Google Plugins', 'manage_options', 'gg_plug_config', 'social_plug_frontend' );
+		add_submenu_page( 'splug_conf', 'Facebook Plugins Configuration', 'Facebook Plugins', 'manage_options', 'splug_fb_conf', 'social_plug_frontend' );
+		add_submenu_page( 'splug_conf', 'Google Plugins Configuration', 'Google Plugins', 'manage_options', 'splug_gg_conf', 'social_plug_frontend' );
 }
 
 function social_plugin_activate() {

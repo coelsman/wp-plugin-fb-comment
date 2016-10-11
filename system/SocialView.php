@@ -14,10 +14,12 @@ if ( !class_exists('SocialView') ) {
 			$this->enqueue_scripts_and_styles();
 		}
 
-		public function render($view, $data = array()) {
-			$this->_before_view();
-			$this->_main_view($view, $data);
-			$this->_after_view();
+		public function render( $view, $data = array() ) {
+			extract( $data );
+
+			require_once ( $this->_app_view_dir . '/layouts/before_view.php' );
+			require_once ( $this->_app_view_dir . '/' . $view . '.php' );
+			require_once ( $this->_app_view_dir . '/layouts/after_view.php' );
 		}
 
 		public function enqueue_scripts_and_styles() {
@@ -28,21 +30,8 @@ if ( !class_exists('SocialView') ) {
 			wp_enqueue_script( 'social-plugins' );
 		}
 
-		public function append_after_post($content) {
+		public function append_after_post( $content ) {
 			
-		}
-
-		protected function _before_view() {
-			require_once ( $this->_app_view_dir . '/layouts/before_view.php' );
-		}
-
-		protected function _after_view() {
-			require_once ( $this->_app_view_dir . '/layouts/after_view.php' );
-		}
-
-		protected function _main_view($view, &$data) {
-			extract( $data );
-			require_once ( $this->_app_view_dir . '/' . $view . '.php' );
 		}
 	}
 }
